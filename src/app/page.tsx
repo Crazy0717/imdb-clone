@@ -2,7 +2,7 @@
 import { Boxes } from "@/components"
 import axios from "axios"
 import { useSearchParams } from "next/navigation"
-import { useEffect, useState } from "react"
+import { Suspense, useEffect, useState } from "react"
 
 const API_KEY = process.env.NEXT_PUBLIC_API_KEY
 
@@ -29,7 +29,9 @@ export default function Home() {
 
   return (
     <div className="">
-      <Boxes BoxesData={BoxesData} />
+      <Suspense fallback={<div>Loading...</div>}>
+        <Boxes BoxesData={BoxesData} />
+      </Suspense>
       <div className="buttons flex gap-3 justify-center py-5">
         <button
           onClick={() => setCurrentPage(currentPage - 1)}
