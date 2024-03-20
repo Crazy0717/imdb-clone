@@ -1,3 +1,4 @@
+"use client"
 import { Boxes } from "@/components"
 import axios from "axios"
 import { useSearchParams } from "next/navigation"
