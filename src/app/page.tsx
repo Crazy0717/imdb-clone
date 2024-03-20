@@ -1,13 +1,8 @@
 "use client"
-import { Boxes } from "@/components"
-import axios from "axios"
-import { useSearchParams } from "next/navigation"
-import { Suspense, useEffect, useState } from "react"
-
-const API_KEY = process.env.NEXT_PUBLIC_API_KEY
+import { Results } from "@/components"
+import { useState } from "react"
 
 export default function Home() {
-  // const [BoxesData, setBoxesData] = useState<any>()
   const [currentPage, setCurrentPage] = useState(1)
   if (currentPage < 1) {
     setCurrentPage(1)
@@ -15,9 +10,7 @@ export default function Home() {
 
   return (
     <div className="">
-      <Suspense fallback={<div>Loading...</div>}>
-        <ComponentUsingSearchParams />
-      </Suspense>
+      <Results currentPage={currentPage} />
       <div className="buttons flex gap-3 justify-center py-5">
         <button
           onClick={() => setCurrentPage(currentPage - 1)}
@@ -43,28 +36,4 @@ export default function Home() {
       </div>
     </div>
   )
-}
-
-function ComponentUsingSearchParams() {
-  const searParams = useSearchParams()
-  const genre = searParams.get("genre")
-  const [BoxesData, setBoxesData] = useState<any>()
-  const [currentPage, setCurrentPage] = useState(1)
-  if (currentPage < 1) {
-    setCurrentPage(1)
-  }
-
-  const getData = async () => {
-    const data: any = await axios.get(
-      `https://api.themoviedb.org/3${
-        genre === "fetchTopRated" ? `/movie/top_rated` : `/trending/all/week`
-      }?api_key=${API_KEY}&language=en-US&page=${currentPage}`
-    )
-    setBoxesData(data)
-  }
-  useEffect(() => {
-    getData()
-  }, [genre, currentPage])
-
-  return <Boxes BoxesData={BoxesData} />
 }
