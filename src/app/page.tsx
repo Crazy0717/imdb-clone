@@ -30,7 +30,7 @@ export default function Home() {
   return (
     <div className="">
       <Suspense fallback={<div>Loading...</div>}>
-        <Boxes BoxesData={BoxesData} />
+        <ComponentUsingSearchParams />
       </Suspense>
       <div className="buttons flex gap-3 justify-center py-5">
         <button
@@ -57,4 +57,28 @@ export default function Home() {
       </div>
     </div>
   )
+}
+
+function ComponentUsingSearchParams() {
+  const searParams = useSearchParams()
+  const genre = searParams.get("genre")
+  const [BoxesData, setBoxesData] = useState<any>()
+  const [currentPage, setCurrentPage] = useState(1)
+  if (currentPage < 1) {
+    setCurrentPage(1)
+  }
+
+  const getData = async () => {
+    const data: any = await axios.get(
+      `https://api.themoviedb.org/3${
+        genre === "fetchTopRated" ? `/movie/top_rated` : `/trending/all/week`
+      }?api_key=${API_KEY}&language=en-US&page=${currentPage}`
+    )
+    setBoxesData(data)
+  }
+  useEffect(() => {
+    getData()
+  }, [genre, currentPage])
+
+  return <Boxes BoxesData={BoxesData} />
 }
