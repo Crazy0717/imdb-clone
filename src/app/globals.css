@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@media screen and (min-width: 500px) and (max-width: 640px) {
+  .Moviebox {
+    width: 80%;
+    margin: 0 auto 24px auto;
+  }
+  .Moviebox img {
+    border-radius: 5px;
+  }
+}
