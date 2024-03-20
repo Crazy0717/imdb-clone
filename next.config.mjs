@@ -4,9 +4,5 @@ const nextConfig = {
     domains: ["image.tmdb.org"],
   },
 }
-module.exports = {
-  experimental: {
-    missingSuspenseWithCSRBailout: false,
-  },
-}
+
 export default nextConfig
