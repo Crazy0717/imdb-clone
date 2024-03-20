@@ -9,7 +9,7 @@ const API_KEY = process.env.NEXT_PUBLIC_API_KEY
 export default function Home() {
   const searParams = useSearchParams()
   const genre = searParams.get("genre")
-  const [BoxesData, setData] = useState<any>()
+  const [BoxesData, setBoxesData] = useState<any>()
   const [currentPage, setCurrentPage] = useState(1)
   if (currentPage < 1) {
     setCurrentPage(1)
@@ -21,7 +21,7 @@ export default function Home() {
         genre === "fetchTopRated" ? `/movie/top_rated` : `/trending/all/week`
       }?api_key=${API_KEY}&language=en-US&page=${currentPage}`
     )
-    setData(data)
+    setBoxesData(data)
   }
   useEffect(() => {
     getData()
