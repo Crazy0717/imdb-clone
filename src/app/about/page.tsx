@@ -1,3 +1,5 @@
+"use client"
+
 const page = () => {
   return (
     <div className="flex flex-col gap-[14px] p-3">

@@ -1,3 +1,5 @@
+"use client"
+
 const Loading = () => {
   return (
     <div className="flex justify-center mt-16">
