@@ -2,6 +2,7 @@
 import axios from "axios"
 import Image from "next/image"
 import { useEffect, useState } from "react"
+
 interface propsType {
   params: {
     id: number
@@ -35,8 +36,9 @@ export default function MoviePage({ params }: propsType) {
       `https://api.themoviedb.org/3/movie/${movieId}?api_key=${API_KEY}`
     )
     setmovieDetail(data)
+    // dynamic title ↓
+    document.title = `${data.title} | IMDb clone`
   }
-  
   useEffect(() => {
     getData()
   }, [])

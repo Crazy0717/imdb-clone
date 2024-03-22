@@ -11,6 +11,7 @@ export default function Home() {
   const genre = searParams.get("genre")
   const [BoxesData, setData] = useState<any>()
   const [currentPage, setCurrentPage] = useState(1)
+  
   if (currentPage < 1) {
     setCurrentPage(1)
   }
@@ -23,6 +24,7 @@ export default function Home() {
     )
     setData(data)
   }
+
   useEffect(() => {
     getData()
   }, [genre, currentPage])
@@ -30,7 +32,7 @@ export default function Home() {
   return (
     <div className="">
       <Boxes BoxesData={BoxesData} />
-      <div className="buttons flex gap-3 justify-center py-5">
+      <div className="buttons flex gap-3 items-center justify-center py-5">
         <button
           onClick={() => setCurrentPage(currentPage - 1)}
           className={`py-1 px-3 rounded-[4px] border border-slate-400 ${
@@ -46,6 +48,39 @@ export default function Home() {
         >
           First page
         </button>
+        <ul className="flex gap-[26px]">
+          <li
+            onClick={() => setCurrentPage(currentPage - 2)}
+            className={`py-1 ${
+              currentPage - 2 <= 0 ? "hidden" : ""
+            } px-3 rounded-[4px] border border-transparent hover:border-slate-400 transition duration-300 cursor-pointer`}
+          >
+            {currentPage - 2}
+          </li>
+          <li
+            onClick={() => setCurrentPage(currentPage - 1)}
+            className={`py-1 ${
+              currentPage <= 1 ? "hidden" : ""
+            } px-3 rounded-[4px] border border-transparent hover:border-slate-400 transition duration-300 cursor-pointer`}
+          >
+            {currentPage - 1}
+          </li>
+          <li className="py-1 px-3 rounded-[4px] border border-slate-400">
+            {currentPage}
+          </li>
+          <li
+            onClick={() => setCurrentPage(currentPage + 1)}
+            className="py-1 px-3 rounded-[4px] border border-transparent hover:border-slate-400 transition duration-100 cursor-pointer"
+          >
+            {currentPage + 1}
+          </li>
+          <li
+            onClick={() => setCurrentPage(currentPage + 2)}
+            className="py-1 px-3 rounded-[4px] border border-transparent hover:border-slate-400 transition duration-100 cursor-pointer"
+          >
+            {currentPage + 2}
+          </li>
+        </ul>
         <button
           onClick={() => setCurrentPage(currentPage + 1)}
           className="py-1 px-3 rounded-[4px] border border-slate-400"

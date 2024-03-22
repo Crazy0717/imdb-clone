@@ -1,4 +1,11 @@
+import { Metadata } from "next"
+import { FaLinkedin, FaTelegramPlane } from "react-icons/fa"
+import { IoLogoGithub } from "react-icons/io"
+import { SiTelegram } from "react-icons/si"
 
+export const metadata: Metadata = {
+  title: "About",
+}
 
 const page = () => {
   return (
@@ -33,6 +40,31 @@ const page = () => {
         looking for ways to improve and enhance the user experience on our
         website. Happy browsing!
       </p>
+
+      <div className="flex flex-col gap-3 pt-2">
+        <h2>Contact:</h2>
+        <a
+          target="_blank"
+          className="flex items-center gap-3"
+          href="https://github.com/Crazy0717"
+        >
+          <IoLogoGithub className="text-[24px]" /> Github
+        </a>
+        <a
+          target="_blank"
+          className="flex items-center gap-3"
+          href="https://t.me/BLACKpowerpm"
+        >
+          <FaTelegramPlane className="text-[20px]" /> Telegram
+        </a>
+        <a
+          target="_blank"
+          className="flex items-center gap-3"
+          href="https://www.linkedin.com/in/muhammadzohit-tursunboyev-5a64762a6/"
+        >
+          <FaLinkedin className="text-[20px]" /> Linkedin
+        </a>
+      </div>
     </div>
   )
 }

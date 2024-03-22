@@ -2,6 +2,24 @@
 @tailwind components;
 @tailwind utilities;
 
+.Moviebox:hover {
+  box-shadow: 0px 0.7px 3.6px rgba(148, 163, 184, 0.065),
+    0px 1.9px 10px rgba(148, 163, 184, 0.091),
+    0px 4.5px 24.1px rgba(148, 163, 184, 0.101),
+    0px 15px 80px rgba(148, 163, 184, 0.17);
+  /* tailwind: sm:hover:shadow-slate-400 sm:shadow-md */
+}
+
+@media screen and (max-width: 570px) {
+  .buttons {
+    flex-wrap: wrap;
+  }
+  .buttons button {
+    padding: 6px 5px;
+    font-size: 12px;
+  }
+}
+
 @media screen and (min-width: 500px) and (max-width: 640px) {
   .Moviebox {
     width: 80%;
